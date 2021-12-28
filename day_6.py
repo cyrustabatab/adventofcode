@@ -1,10 +1,10 @@
-from collections import deque
+from collections import deque,Counter
 import argparse
 
 
-ap = argparse.ArgumentParser()
-ap.add_argument("-d","--days",help="num of days",required=True,type=int)
-args = vars(ap.parse_args())
+#ap = argparse.ArgumentParser()
+#ap.add_argument("-d","--days",help="num of days",required=True,type=int)
+#args = vars(ap.parse_args())
 
 
 
@@ -60,6 +60,37 @@ def day_6(days,input_file=INPUT_FILE):
 
 
 
+def day_6_part_2(input_file=INPUT_FILE,days=256):
+    
+    day_to_num_fish = {}
+    with open(input_file,'r') as f:
+
+        values = Counter(map(int,f.read().split(',')))
+
+
+
+    
+
+    for _ in range(days):
+        new_fish = values[0]
+        for day in range(8):
+            values[day] = values[day + 1]
+
+
+        values[6] += new_fish
+        values[8] = new_fish
+
+    
+
+
+    return sum(values.values())
+            
+        
+
+
+
+
+
 
 
 
@@ -67,5 +98,4 @@ def day_6(days,input_file=INPUT_FILE):
 
 if __name__ == "__main__":
 
-    days = args["days"]
-    print(day_6(days))
+    print(day_6_part_2())
