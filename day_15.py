@@ -227,6 +227,10 @@ def day_15(input_file=INPUT_FILE):
                 graph[coordinate][(row,col +1)] = int(grid[row,col +1])
             if row + 1 < rows:
                 graph[coordinate][(row + 1,col)] = int(grid[row + 1,col])
+            if col -1 >= 0:
+                graph[coordinate][(row,col -1)] = int(grid[row,col -1])
+            if row -1 >= 0:
+                graph[coordinate][(row -1 ,col)] = int(grid[row - 1,col])
 
     
     start = (0,0)
